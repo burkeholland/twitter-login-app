@@ -50,17 +50,12 @@ async function importLists(userId: string, newUserid: string, newIdentityProvide
 
     const { resources } = await container.items.query(querySpec).fetchAll();
 
-    // create a new item for each existing item
+    // update each item
     for (const item of resources) {
-        const newItem = {
-            userId: hashedUsername,
-            vanityUrl: item.vanityUrl,
-            description: item.description,
-            links: item.links,
-            identityProvider: newIdentityProvider
-        }
-
-        await container.items.create(newItem);
+        item.userId = hashedUsername;
+        item.identityProvider = newIdentityProvider;
+        item.migratedUserId = userId;
+        await container.items.upsert(item);
     };
 }
 
