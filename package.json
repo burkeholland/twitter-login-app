@@ -16,11 +16,13 @@
     "@types/express-session": "^1.18.0",
     "@types/passport-twitter": "^1.0.40",
     "cookie-parser": "^1.4.6",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
     "passport": "^0.7.0",
     "passport-twitter": "^1.0.4",
+    "pug": "^3.0.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   }

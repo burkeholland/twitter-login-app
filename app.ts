@@ -4,6 +4,7 @@ import passport from 'passport';
 import { Strategy as TwitterStrategy } from 'passport-twitter';
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/authRoutes';
+import importRoute from './routes/importRoute';
 
 const app = express();
 const PORT = 3000;
@@ -44,6 +45,8 @@ app.use(passport.session());
 
 app.use(cookieParser());
 
+app.set('view engine', 'pug');
+
 // Serialize user
 passport.serializeUser((user, done) => {
     done(null, user.id); // Assuming your user object has an id field
@@ -57,6 +60,7 @@ passport.deserializeUser((id, done) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/import', importRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
